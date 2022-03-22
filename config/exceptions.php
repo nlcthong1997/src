@@ -6,6 +6,7 @@ return [
         App\Exceptions\BadRequestException::class,
         App\Exceptions\ForbiddenException::class,
         App\Exceptions\NotAcceptableException::class,
+        App\Exceptions\NotFoundException::class,
         App\Exceptions\UnauthorizedException::class,
     ],
 
@@ -29,6 +30,10 @@ return [
         'unauthorized' => [
             'status_code' => 401,
             'code' => 'ERROR_UNAUTHORIZED'
+        ],
+        'not_found' => [
+            'status_code' => 404,
+            'code' => 'ERROR_NOT_FOUND'
         ],
         'forbidden' => [
             'status_code' => 403,

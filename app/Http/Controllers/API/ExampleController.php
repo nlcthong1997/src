@@ -7,9 +7,15 @@ use App\Exceptions\NotAcceptableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Example\ExampleAPIRequest;
 use Exception;
+use Authenticate;
 
 class ExampleController extends Controller
 {
+    public function exampleLogin()
+    {
+        return Authenticate::login(['user' => 'thong'], 1, 1);
+    }
+
     public function exampleShow(ExampleAPIRequest $request)
     {
         $validated = $request->validated();

@@ -233,6 +233,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //custom
+        'Authenticate' => App\Facades\AuthenticateFacade::class,
     ],
 
 ];

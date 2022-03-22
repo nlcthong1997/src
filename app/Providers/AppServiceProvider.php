@@ -14,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(\App\Core\Authentications\AuthenticateInterface::class, function () {
+            return new \App\Core\Authentications\Authenticate();
+        });
     }
 
     /**
