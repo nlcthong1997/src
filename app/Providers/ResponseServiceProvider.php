@@ -44,5 +44,15 @@ class ResponseServiceProvider extends ServiceProvider
                 'body' => $data
 			], $httpCode);
 		});
+
+        Response::macro('jsonToken', function ($token, $httpCode = 200) {
+			return	Response::json( [
+				'data' => [
+					'access_token' => $token,
+					'token_type' => 'bearer',
+					'expires_in' => auth()->factory()->getTTL() * 60
+				]
+			], $httpCode);
+		});
     }
 }

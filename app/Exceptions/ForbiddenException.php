@@ -26,7 +26,7 @@ class ForbiddenException extends AppException
      */
     public function getCodeDefault()
     {
-        return config('constants.http.forbidden.code');
+        return config('exceptions.http.forbidden.code');
     }
 
     /**
@@ -34,6 +34,6 @@ class ForbiddenException extends AppException
      */
     public function getStatusCodeDefault()
     {
-        return config('constants.http.forbidden.status_code');
+        return config('exceptions.http.forbidden.status_code');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class InternalServerErrorException extends AppException
+class InternalErrorException extends AppException
 {
     /**
      * 
@@ -26,7 +26,7 @@ class InternalServerErrorException extends AppException
      */
     public function getCodeDefault()
     {
-        return config('constants.http.internal_server_error.code');
+        return config('exceptions.http.internal_server_error.code');
     }
 
     /**
@@ -34,6 +34,6 @@ class InternalServerErrorException extends AppException
      */
     public function getStatusCodeDefault()
     {
-        return config('constants.http.internal_server_error.status_code');
+        return config('exceptions.http.internal_server_error.status_code');
     }
 }

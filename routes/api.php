@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\ExampleController;
+use App\Http\Controllers\API\ExampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,15 @@ use App\Http\Controllers\Web\ExampleController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/a', [ExampleController::class, 'exampleAPI'])->name('api.example');
+Route::get('/example/login', [ExampleController::class, 'exampleLogin'])->name('api.example.login');
+
+Route::group([
+    'prefix' => 'example',
+    'middleware' => []
+], function() {
+    Route::get('/', [ExampleController::class, 'exampleShow'])->name('api.example.show');
+});

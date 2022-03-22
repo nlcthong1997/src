@@ -125,11 +125,14 @@ class AppException extends Exception
      */
     public function render($request)
     {
-        
+        $errMess = !empty($this->getCustomMessage()['message'])
+            ? $this->getCustomMessage()['message']
+            : $this->getCustomMessage();
+
         if ($request->is('api/*') || $request->ajax()) {
             // api|ajax
             return response()->jsonError(
-                $this->getCustomMessage(), 
+                $errMess, 
                 $this->getData(), 
                 $this->getCustomeCode(), 
                 0, 
@@ -137,10 +140,6 @@ class AppException extends Exception
             );
         } else {
             // web|view
-            $errMess = !empty($this->getCustomMessage()['message'])
-                ? $this->getCustomMessage()['message']
-                : $this->getCustomMessage();
-
             if (!empty($this->redirectTo) && is_string($this->redirectTo)) {
                 return $this->renderRedirect($errMess);
             }

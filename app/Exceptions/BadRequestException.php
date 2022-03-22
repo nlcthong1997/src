@@ -26,7 +26,7 @@ class BadRequestException extends AppException
      */
     public function getCodeDefault()
     {
-        return config('constants.http.bad_request.code');
+        return config('exceptions.http.bad_request.code');
     }
 
     /**
@@ -34,6 +34,6 @@ class BadRequestException extends AppException
      */
     public function getStatusCodeDefault()
     {
-        return config('constants.http.bad_request.status_code');
+        return config('exceptions.http.bad_request.status_code');
     }
 }

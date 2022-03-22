@@ -26,7 +26,7 @@ class UnauthorizedException extends AppException
      */
     public function getCodeDefault()
     {
-        return config('constants.http.unauthorized.code');
+        return config('exceptions.http.unauthorized.code');
     }
 
     /**
@@ -34,6 +34,6 @@ class UnauthorizedException extends AppException
      */
     public function getStatusCodeDefault()
     {
-        return config('constants.http.unauthorized.status_code');
+        return config('exceptions.http.unauthorized.status_code');
     }
 }

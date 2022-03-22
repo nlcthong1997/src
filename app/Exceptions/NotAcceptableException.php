@@ -26,7 +26,7 @@ class NotAcceptableException extends AppException
      */
     public function getCodeDefault()
     {
-        return config('constants.http.not_acceptable.code');
+        return config('exceptions.http.not_acceptable.code');
     }
 
     /**
@@ -34,6 +34,6 @@ class NotAcceptableException extends AppException
      */
     public function getStatusCodeDefault()
     {
-        return config('constants.http.not_acceptable.status_code');
+        return config('exceptions.http.not_acceptable.status_code');
     }
 }

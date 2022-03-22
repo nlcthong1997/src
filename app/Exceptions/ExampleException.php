@@ -11,7 +11,7 @@ class ExampleException extends AppException
      */
     public function getMessageDefault()
     {
-        return "Example message";
+        return "Example default message.";
     }
 
     /**

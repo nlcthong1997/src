@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Exceptions\ExampleException;
-use App\Exceptions\BadRequestException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Example\ExampleRequest;
+use Exception;
 
 class ExampleController extends Controller
 {
@@ -15,21 +15,23 @@ class ExampleController extends Controller
         if ($request->isMethod('GET')) {
             return view('example.show');
         }
+
         $validated = $request->validated();
-        $min = 10;
-        $total = $validated['input1'] + $validated['input2'];
-        if ($total > $min) {
-            return back()->with('success', 'Success');
+        try {
+            $min = 10;
+            $max = 100;
+            $num1 = $validated['input1'];
+            $num2 = $validated['input2'] ?? 0;
+            $total = $num1 + $num2;
+            if ($total > $min && $total < $max) {
+                return back()->with('success', 'Success');
+            } elseif ($total < $min) {
+                throw new ExampleException(); //default
+            } else {
+                throw new ExampleException('Example custom message');
+            }
+        } catch (Exception $e) {
+            throwErr($e);
         }
-        throw new ExampleException(); //default
-        throw new ExampleException('custom message');
-    }
-
-    public function exampleAPI()
-    {
-        return response()->jsonSuccess(['a' => 1]);
-
-        throw new BadRequestException(); // default
-        throw new BadRequestException('custom message');
     }
 }
