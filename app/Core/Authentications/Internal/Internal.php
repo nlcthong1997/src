@@ -18,7 +18,7 @@ class Internal implements InternalInterface
     }
 
     /**
-     * 
+     * default register
      */
     public function register($info)
     {
@@ -26,13 +26,13 @@ class Internal implements InternalInterface
     }
 
     /**
-     * 
+     * default login
      */
     public function login($info)
     {
-        // $info['email_verified_at'] = function($q) {
-        //     $q->where('email_verified_at', '<>', null);
-        // };
+        $info['email_verified_at'] = function($q) {
+            $q->where('email_verified_at', '<>', null);
+        };
         if (! $token = auth($this->guard)->attempt($info)) {
             throw new UnauthorizedException();
         }
@@ -40,18 +40,10 @@ class Internal implements InternalInterface
     }
 
     /**
-     * 
+     * default get info
      */
     public function me()
     {
         return auth($this->guard)->user();
-    }
-
-    /**
-     * 
-     */
-    public function logout()
-    {
-        auth($this->guard)->logout();
     }
 }

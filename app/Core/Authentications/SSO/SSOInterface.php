@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Authentications\Internal;
+namespace App\Core\Authentications\SSO;
 
-interface InternalInterface
+interface SSOInterface
 {
     public function register($info);
 

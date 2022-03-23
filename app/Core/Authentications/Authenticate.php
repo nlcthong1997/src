@@ -4,23 +4,37 @@ namespace App\Core\Authentications;
 
 class Authenticate extends Handler implements AuthenticateInterface
 {
+    /**
+     * 
+     */
     public function register()
     {
         
     }
 
-    public function login($info, $type, $guardOrService)
+    /**
+     * 
+     */
+    public function login($argm)
     {
-        return $this->getAuthenticate($type, $guardOrService)->login($info);
+        $this->make($argm);
+        return $this->getAuthenticate()->login($this->infoData);
     }
 
-    public function logout($type, $guardOrService)
+    /**
+     * 
+     */
+    public function me($argm)
     {
-        return $this->getAuthenticate($type, $guardOrService)->logout();
+        $this->make($argm);
+        return $this->getAuthenticate()->me();
     }
-
-    public function me()
+    
+    /**
+     * 
+     */
+    public function logout($guard = null)
     {
-
+        return auth($guard)->logout();
     }
 }

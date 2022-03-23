@@ -6,9 +6,9 @@ interface AuthenticateInterface
 {
     public function register();
 
-    public function login($info, $type, $guardOrService);
+    public function login($argm);
 
-    public function logout($type, $guardOrService);
+    public function logout($argm);
 
-    public function me();
+    public function me($argm);
 }

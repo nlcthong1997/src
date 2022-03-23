@@ -13,7 +13,13 @@ class ExampleController extends Controller
 {
     public function exampleLogin()
     {
-        return Authenticate::login(['user' => 'thong'], 1, 1);
+        $credentials = ['email' => 'thongemail', 'password' => 'pw'];
+        return Authenticate::login([
+            'info' => $credentials,
+            'type' => 2,
+            'service' => 1,
+            // 'guard' => ''
+        ]);
     }
 
     public function exampleShow(ExampleAPIRequest $request)
