@@ -27,7 +27,7 @@ class ResponseServiceProvider extends ServiceProvider
         Response::macro('jsonError', function ($errMessage, $errData, $errCode, $traceID = 0, $httpCode = 400) {
             return	Response::json( [
 				'error' => [
-					'message' => $errMessage,
+					'messages' => $errMessage,
 					'code' => $errCode,
 					// 'trace_id' => exportString($traceID),
 				]

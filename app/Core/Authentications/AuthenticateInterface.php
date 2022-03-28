@@ -4,7 +4,7 @@ namespace App\Core\Authentications;
 
 interface AuthenticateInterface
 {
-    public function register();
+    public function register($argm);
 
     public function login($argm);
 

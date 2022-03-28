@@ -46,4 +46,12 @@ class Internal implements InternalInterface
     {
         return auth($this->guard)->user();
     }
+
+    /**
+     * 
+     */
+    protected function sendEmailRegistered()
+    {
+        //
+    }
 }

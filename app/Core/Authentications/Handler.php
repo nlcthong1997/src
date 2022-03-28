@@ -6,7 +6,8 @@ use App\Exceptions\InternalErrorException;
 use Illuminate\Support\Facades\App;
 use App\Core\Authentications\Internal\InternalInterface;
 use App\Core\Authentications\SSO\SSOInterface;
-use App\Core\Authentications\Internal\User\Authenticate as GuardAPI;
+use App\Core\Authentications\Internal\User\Authenticate as GuardUser;
+use App\Core\Authentications\Internal\Admin\Authenticate as GuardAdmin;
 use Illuminate\Support\Facades\Log;
 
 class Handler
@@ -40,7 +41,7 @@ class Handler
                 $this->setAuthenticateSSO($this->guard, $this->serviceType);
                 return App::make(SSOInterface::class);
             default:
-                Log::error('Authentication type unknown.');
+                Log::error('Authentication type unknown at '.__FILE__.': Function['.__FUNCTION__.']');
                 throw new InternalErrorException();
         }
     }
@@ -51,19 +52,21 @@ class Handler
     protected function setAuthenticateInternal($guard)
     {
         switch ($guard) {
-            case config('constants.authenticate.internal.guards.user'):
+            case config('constants.authenticate.guards.user'):
                 App::bind(InternalInterface::class, function () use($guard) {
-                    return new GuardAPI($guard);
+                    return new GuardUser($guard);
                 });
                 break;
-            // case 'admin':
-            //     // bind admin
-            //     break;
-            // case 'web':
-            //     // bind admin
+            case config('constants.authenticate.guards.admin'):
+                App::bind(InternalInterface::class, function () use($guard) {
+                    return new GuardAdmin($guard);
+                });
+                break;
+            // case 'other-guard':
+            //     // bind other-guard
             //     break;
             default:
-                Log::error('The guard type unknown.');
+                Log::error('The guard type unknown at '.__FILE__.': Function['.__FUNCTION__.']');
                 throw new InternalErrorException();
         }
     }
@@ -83,7 +86,7 @@ class Handler
             //     // bind apple
             //     break;
             default:
-                Log::error('SSO type unknown.');
+                Log::error('SSO type unknown at '.__FILE__.': Function['.__FUNCTION__.']');
                 throw new InternalErrorException();
         }
     }

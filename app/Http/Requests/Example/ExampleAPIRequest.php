@@ -24,7 +24,7 @@ class ExampleAPIRequest extends BaseRequest
     public function rules()
     {
         return [
-            'option' => 'nullable',
+            'option' => '',
         ];
     }
 }

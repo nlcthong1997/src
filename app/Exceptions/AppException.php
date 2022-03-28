@@ -132,7 +132,7 @@ class AppException extends Exception
         if ($request->is('api/*') || $request->ajax()) {
             // api|ajax
             return response()->jsonError(
-                $errMess, 
+                is_string($errMess) ? ['system_mess' => [$errMess]] : $errMess, 
                 $this->getData(), 
                 $this->getCustomeCode(), 
                 0, 

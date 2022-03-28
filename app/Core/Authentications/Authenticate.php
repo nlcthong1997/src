@@ -7,9 +7,10 @@ class Authenticate extends Handler implements AuthenticateInterface
     /**
      * 
      */
-    public function register()
+    public function register($argm)
     {
-        
+        $this->make($argm);
+        return $this->getAuthenticate()->register($this->infoData);
     }
 
     /**
